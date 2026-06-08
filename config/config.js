@@ -12,8 +12,8 @@ module.exports = {
   },
 
   ai: {
-    apiKey: process.env.DEEPSEEK_API_KEY,
-    model: 'deepseek-chat',
+    apiKey: process.env.GROQ_API_KEY,
+    model: 'llama-3.3-70b-versatile',
     maxTokens: 8192,
   },
 
