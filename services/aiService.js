@@ -18,23 +18,24 @@ Exigences :
 - Code prêt pour la production`;
 
   const response = await axios.post(
-    'https://api.anthropic.com/v1/messages',
+    'https://api.deepseek.com/chat/completions',
     {
-      model: config.ai.model,
-      max_tokens: config.ai.maxTokens,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: `Crée un site web pour : ${description}` }],
+      model: 'deepseek-chat',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: `Crée un site web pour : ${description}` }
+      ],
+      max_tokens: 8192,
     },
     {
       headers: {
-        'x-api-key': config.ai.apiKey,
-        'anthropic-version': '2023-06-01',
+        'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`,
         'Content-Type': 'application/json',
       },
     }
   );
 
-  const rawText = response.data.content[0].text.trim();
+  const rawText = response.data.choices[0].message.content.trim();
   const clean = rawText.replace(/^```(?:json)?\n?/, '').replace(/```$/, '').trim();
 
   let parsed;
