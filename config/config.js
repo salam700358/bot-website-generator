@@ -12,8 +12,8 @@ module.exports = {
   },
 
   ai: {
-    apiKey: process.env.ANTHROPIC_API_KEY,
-    model: 'claude-opus-4-20250514',
+    apiKey: process.env.DEEPSEEK_API_KEY,
+    model: 'deepseek-chat',
     maxTokens: 8192,
   },
 
